@@ -588,20 +588,39 @@
 </script>
 
 <script>
-      const elements = document.querySelectorAll('.animate-fade');
+//       const elements = document.querySelectorAll('.animate-fade');
     
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            obs.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.15
-      });
-    
-      elements.forEach(el => observer.observe(el));
+//       const observer = new IntersectionObserver(
+//   (entries, observer) => {
+//     entries.forEach(entry => {
+//       if (entry.isIntersecting) {
+//         entry.target.classList.add('visible');
+//         observer.unobserve(entry.target); 
+//       }
+//     });
+//   },
+//   { threshold: 0.1 }
+// );
+
+// document.querySelectorAll('.animate-fade').forEach(el => {
+//   observer.observe(el);
+// });
+document.addEventListener("DOMContentLoaded", () => {
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        obs.unobserve(entry.target);
+      }
+    });
+  });
+
+  document.querySelectorAll(".project-card").forEach(el => {
+    el.classList.add("animate-fade");
+    observer.observe(el);
+  });
+});
+
 </script>
     
 <script>
@@ -729,9 +748,6 @@ function typeRole() {
 window.addEventListener('DOMContentLoaded', typeRole);
 </script>
 
-
-<!-- Load Three.js from CDN -->
-<!-- Load Three.js and OrbitControls -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
 
@@ -751,16 +767,6 @@ window.addEventListener('DOMContentLoaded', typeRole);
   const earth = new THREE.Mesh(geometry, material);
   scene.add(earth);
 
-  // // Glow (shimmer effect)
-  // const glowMaterial = new THREE.MeshBasicMaterial({
-  //   color: 0x87cefa,
-  //   transparent: true,
-  //   opacity: 0.08,
-  //   side: THREE.BackSide
-  // });
-  // const glow = new THREE.Mesh(new THREE.SphereGeometry(1.2, 64, 64), glowMaterial);
-  // scene.add(glow);
-
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
   scene.add(ambientLight);
   const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
@@ -777,13 +783,12 @@ window.addEventListener('DOMContentLoaded', typeRole);
 
   function animate() {
     requestAnimationFrame(animate);
-    controls.update(); // <- Important for cursor movement
+    controls.update(); 
     renderer.render(scene, camera);
   }
 
   animate();
 
-  // Resize responsive
   window.addEventListener('resize', () => {
     const width = container.offsetWidth;
     const height = container.offsetHeight;
@@ -793,7 +798,13 @@ window.addEventListener('DOMContentLoaded', typeRole);
   });
 </script>
 
-
+<script>
+  document.querySelectorAll(".project-card").forEach(card => {
+    card.addEventListener("touchstart", function () {
+      this.classList.toggle("show-overlay");
+    });
+  });
+</script>
 <script>
   const starsWrapper = document.getElementById('stars-background');
   const starsCanvas = document.createElement('canvas');
@@ -827,7 +838,7 @@ window.addEventListener('DOMContentLoaded', typeRole);
 
       starsCtx.beginPath();
       starsCtx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
-      starsCtx.fillStyle = `rgba(148, 206, 255, ${star.alpha})`; // 🌌 pastel dreamy blue
+      starsCtx.fillStyle = `rgba(148, 206, 255, ${star.alpha})`; 
       starsCtx.fill();
     }
     requestAnimationFrame(drawStars);

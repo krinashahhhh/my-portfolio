@@ -723,7 +723,7 @@ section:not(:last-child) {
 }    
 
  /*---PROJECT SECTION */
-.projects-grid {
+ .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2.5rem;
@@ -784,7 +784,7 @@ section:not(:last-child) {
 
 .project-card:hover .project-overlay {
   opacity: 1;
-}
+} 
 
 .project-title {
   font-size: 1.2rem;
