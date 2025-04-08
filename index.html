@@ -10,13 +10,13 @@
   >
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
     
   </head>
   <body>
     <div id="particles-js"></div>
     <div id="progress-bar"></div>
-
+    <div id="stars-background" style="position: fixed; top: 0; left: 0; 
+  width: 100vw; height: 100vh; z-index: -1; pointer-events: none;"></div>
     <svg id="bg-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
     <defs>
       <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -470,7 +470,10 @@
       <h2 class="section-title">Let's get in touch</h2>
       <div class="contact-wrapper">
         <div class="contact-left">
-          <img src="./assets/globe.png" alt="Globe Illustration" class="contact-img" />
+          <!-- <img src="./assets/globe.png" alt="Globe Illustration" class="contact-img" /> -->
+          <!-- Put this where you want your globe -->
+          <div id="globe-container"></div>
+
           <div class="contact-info-container">
             <i class="fas fa-envelope"></i>
             <p><a href="mailto:krinashahh3010@gmail.com">krinashahh3010@gmail.com</a></p>
@@ -727,6 +730,111 @@ window.addEventListener('DOMContentLoaded', typeRole);
 </script>
 
 
+<!-- Load Three.js from CDN -->
+<!-- Load Three.js and OrbitControls -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+
+<script>
+  const container = document.getElementById('globe-container');
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(70, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(container.offsetWidth, container.offsetHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  container.appendChild(renderer.domElement);
+
+  const geometry = new THREE.SphereGeometry(1, 64, 64);
+  const texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/turban/webgl-earth/master/images/2_no_clouds_4k.jpg');
+  const material = new THREE.MeshStandardMaterial({ map: texture });
+  const earth = new THREE.Mesh(geometry, material);
+  scene.add(earth);
+
+  // // Glow (shimmer effect)
+  // const glowMaterial = new THREE.MeshBasicMaterial({
+  //   color: 0x87cefa,
+  //   transparent: true,
+  //   opacity: 0.08,
+  //   side: THREE.BackSide
+  // });
+  // const glow = new THREE.Mesh(new THREE.SphereGeometry(1.2, 64, 64), glowMaterial);
+  // scene.add(glow);
+
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+  scene.add(ambientLight);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  directionalLight.position.set(5, 3, 5);
+  scene.add(directionalLight);
+
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableZoom = false;
+  controls.enablePan = false;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 2.2;
+
+  camera.position.z = 2.5;
+
+  function animate() {
+    requestAnimationFrame(animate);
+    controls.update(); // <- Important for cursor movement
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  // Resize responsive
+  window.addEventListener('resize', () => {
+    const width = container.offsetWidth;
+    const height = container.offsetHeight;
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height);
+  });
+</script>
+
+
+<script>
+  const starsWrapper = document.getElementById('stars-background');
+  const starsCanvas = document.createElement('canvas');
+  const starsCtx = starsCanvas.getContext('2d');
+  starsWrapper.appendChild(starsCanvas);
+
+  function resizeStarsCanvas() {
+    starsCanvas.width = window.innerWidth;
+    starsCanvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resizeStarsCanvas);
+  resizeStarsCanvas();
+
+  const stars = [];
+  for (let i = 0; i < 150; i++) {
+    stars.push({
+      x: Math.random() * starsCanvas.width,
+      y: Math.random() * starsCanvas.height,
+      radius: Math.random() * 1.4 + 0.5,
+      alpha: Math.random(),
+      delta: Math.random() * 0.02
+    });
+  }
+
+  function drawStars() {
+    starsCtx.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
+    for (let star of stars) {
+      star.alpha += star.delta;
+      if (star.alpha <= 0 || star.alpha >= 1) star.delta *= -1;
+
+      starsCtx.beginPath();
+      starsCtx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+      starsCtx.fillStyle = `rgba(148, 206, 255, ${star.alpha})`; // 🌌 pastel dreamy blue
+      starsCtx.fill();
+    }
+    requestAnimationFrame(drawStars);
+  }
+
+  drawStars();
+</script>
 
   </body>
 </html>
