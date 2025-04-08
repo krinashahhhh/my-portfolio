@@ -12,26 +12,30 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
     
-  
   </head>
   <body>
     <div id="particles-js"></div>
     <div id="progress-bar"></div>
+
     <svg id="bg-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <defs>
+      <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" style="stop-color:#e0f7fa; stop-opacity:1" />
           <stop offset="100%" style="stop-color:#f0f8ff; stop-opacity:1" />
-        </linearGradient>
-      </defs>
-      <path d="M0,100 Q400,200 800,100 T1600,100" stroke="#b2dbff" fill="none" stroke-width="8"/>
-      <circle cx="400" cy="300" r="180" fill="url(#bg-gradient)" opacity="0.1"/>
+      </linearGradient>
+    </defs>
+    <path d="M0,100 Q400,200 800,100 T1600,100" stroke="#b2dbff" fill="none" stroke-width="8"/>
+    <circle cx="400" cy="300" r="180" fill="url(#bg-gradient)" opacity="0.1"/>
     </svg> 
+
     <canvas id="bg-canvas"></canvas>
+
     <nav id="desktop-nav">  
     <div class="logo">
-        <img src="./assets/icon.png" alt="Logo Icon" class="logo-icon" /><a href="#profile">
-        Krina Shah</a>
+          <a href="#profile" class="logo-link">
+            <img src="./assets/icon.png" alt="Logo" class="navbar-logo" />
+            <span class="logo-text">Krina Shah</span>
+          </a>       
       </div>
     <div>
         <ul class="nav-links">
@@ -40,7 +44,6 @@
           <li><a href="#workexperience">Work Experience</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
-          <!-- <li><a href="#contact">Contact</a></li> -->
         </ul>
       </div>
     </nav>
@@ -70,20 +73,18 @@
       <div class="section__text">
         <p class="section__text__p1">Hello, I'm</p>
         <h1 class="title">Krina Shah</h1>
-        <!-- <h2 class="dynamic-role">
-          <span id="typewriter-text"></span><span class="cursor">|</span>
-        </h2> -->
+      
         <h2 class="dynamic-role">
           <span id="typewriter-text"></span><span class="cursor">|</span>
-          <span class="placeholder-role">Full Stack Engineer</span> <!-- invisible spacing trick -->
+          <span class="placeholder-role">Full Stack Engineer</span> 
         </h2>
         <div class="btn-container">
           <button
-            class="btn btn-color-2"
-            onclick="window.open('./assets/Resume_Krina.pdf')"
-          >
-            Download CV
-          </button>
+          class="btn btn-color-2"
+          onclick="window.open('./assets/Resume_Krina.pdf')"
+        >
+          Download CV
+        </button>
           <button class="btn btn-color-1" onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })">
             Contact Info
           </button>
@@ -105,7 +106,6 @@
         </div>
       </div>
     </section>
-
 
     <section id="about" class="section" >
       <a href="#about" class="scroll-down">
@@ -497,35 +497,53 @@
       <p>Copyright &#169; 2025 Krina Shah. All Rights Reserved.</p>
     </footer>
 
-
-
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 
-  <script>
+  <div class="stars-overlay"></div>
+
+  <script src="./script.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script>
   (function () {
-    emailjs.init("krinashahh3010@gmail.com");
+    emailjs.init("n8TussO-aVYtJi2Fq");
   })();
 
   document.getElementById("contact-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    emailjs.sendForm("service_mu1ujpg", "template_q62xbut", this)
-      .then(() => {
-        alert("Message sent successfully ✅");
-        this.reset();
-      })
-      .catch((err) => {
+    emailjs.sendForm("service_e1qkj7z", "template_q62xbut", this)
+    .then(() => {
+      confettiBurst(); 
+      this.reset();
+    })
+          .catch((err) => {
         console.error("Failed to send message 😢", err);
         alert("Oops! Something went wrong.");
       });
   });
+
+  function confettiBurst() {
+  confetti({
+    particleCount: 80,
+    spread: 80,
+    origin: { y: 0.6 },
+    colors: [
+      '#0d47a1', 
+      '#1565c0', 
+      '#1e88e5', 
+      '#42a5f5', 
+      '#90caf9', 
+      '#e3f2fd'  
+    ]
+  });
+}
 </script>
-
-    <div class="stars-overlay"></div>
-
-    <script src="./script.js"></script>
-
-    <script src="https://unpkg.com/scrollreveal"></script>
 
 <script>
   ScrollReveal().reveal('.skill-category', {
@@ -581,7 +599,7 @@
       });
     
       elements.forEach(el => observer.observe(el));
-    </script>
+</script>
     
 <script>
   const canvas = document.getElementById('bg-canvas');
@@ -637,8 +655,6 @@
   });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
 <script>
   particlesJS("particles-js", {
     particles: {
@@ -673,7 +689,8 @@
     },
     retina_detect: true
   });
-  </script>
+</script>
+
 <script>
 const roles = ['Software Developer', 'Full Stack Engineer', 'ML Engineer'];
 let roleIndex = 0;
@@ -708,6 +725,11 @@ function typeRole() {
 
 window.addEventListener('DOMContentLoaded', typeRole);
 </script>
+
+<div id="success-animation" class="success-popup hidden">
+  <div class="checkmark">✓</div>
+  <p>Message sent successfully!</p>
+</div>
 
   </body>
 </html>
