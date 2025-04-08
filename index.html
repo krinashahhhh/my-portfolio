@@ -5,23 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Portfolio</title>
+    <link
+  rel="stylesheet"
+  >
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
+    
+  
   </head>
   <body>
-    <nav id="desktop-nav">
-      <div class="logo">John Doe</div>
-      <div>
+    <div id="particles-js"></div>
+    <div id="progress-bar"></div>
+    <svg id="bg-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#e0f7fa; stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#f0f8ff; stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <path d="M0,100 Q400,200 800,100 T1600,100" stroke="#b2dbff" fill="none" stroke-width="8"/>
+      <circle cx="400" cy="300" r="180" fill="url(#bg-gradient)" opacity="0.1"/>
+    </svg> 
+    <canvas id="bg-canvas"></canvas>
+    <nav id="desktop-nav">  
+    <div class="logo">
+        <img src="./assets/icon.png" alt="Logo Icon" class="logo-icon" /><a href="#profile">
+        Krina Shah</a>
+      </div>
+    <div>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
+          <li><a href="#specializations">Specialization</a></li>
+          <li><a href="#workexperience">Work Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <!-- <li><a href="#contact">Contact</a></li> -->
         </ul>
       </div>
     </nav>
+ 
     <nav id="hamburger-nav">
-      <div class="logo">John Doe</div>
+      <div class="logo">Krina Shah</div>
       <div class="hamburger-menu">
         <div class="hamburger-icon" onclick="toggleMenu()">
           <span></span>
@@ -30,353 +55,659 @@
         </div>
         <div class="menu-links">
           <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#specializations" onclick="toggleMenu()">Specialization</a></li>
+          <li><a href="#workexperience" onclick="toggleMenu()">Work Experience</a></li>
+          <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
           <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
         </div>
       </div>
     </nav>
+
     <section id="profile">
       <div class="section__pic-container">
-        <img src="./assets/profile-pic.png" alt="John Doe profile picture" />
+        <img src="./assets/profile-pic.jpg" alt="Krina Shah profile picture" />
       </div>
       <div class="section__text">
         <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">John Doe</h1>
-        <p class="section__text__p2">Frontend Developer</p>
+        <h1 class="title">Krina Shah</h1>
+        <!-- <h2 class="dynamic-role">
+          <span id="typewriter-text"></span><span class="cursor">|</span>
+        </h2> -->
+        <h2 class="dynamic-role">
+          <span id="typewriter-text"></span><span class="cursor">|</span>
+          <span class="placeholder-role">Full Stack Engineer</span> <!-- invisible spacing trick -->
+        </h2>
         <div class="btn-container">
           <button
             class="btn btn-color-2"
-            onclick="window.open('./assets/resume-example.pdf')"
+            onclick="window.open('./assets/Resume_Krina.pdf')"
           >
             Download CV
           </button>
-          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+          <button class="btn btn-color-1" onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })">
             Contact Info
           </button>
+         
         </div>
         <div id="socials-container">
           <img
             src="./assets/linkedin.png"
             alt="My LinkedIn profile"
             class="icon"
-            onclick="location.href='https://linkedin.com/'"
+            onclick="location.href='https://www.linkedin.com/in/krinashah30/'"
           />
           <img
             src="./assets/github.png"
             alt="My Github profile"
             class="icon"
-            onclick="location.href='https://github.com/'"
+            onclick="location.href='https://github.com/krinashahhhh'"
           />
         </div>
       </div>
     </section>
-    <section id="about">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
-      <div class="section-container">
-        <div class="section__pic-container">
-          <img
-            src="./assets/about-pic.png"
-            alt="Profile picture"
-            class="about-pic"
-          />
-        </div>
-        <div class="about-details-container">
-          <div class="about-containers">
-            <div class="details-container">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Experience</h3>
-              <p>2+ years <br />Frontend Development</p>
-            </div>
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>B.Sc. Bachelors Degree<br />M.Sc. Masters Degree</p>
+
+
+    <section id="about" class="section" >
+      <a href="#about" class="scroll-down">
+        <i class="fas fa-chevron-down"></i>
+      </a>
+          <div class="about-container">
+            <div class="about-text">
+              <p>
+                Hi, I'm <strong>Krina Shah</strong>, a Master's student in Computer Science at
+                <strong>Indiana University Bloomington</strong>, with over two years of experience in software development.
+                I'm passionate about building scalable and impactful solutions—particularly in the areas of
+                <strong>software engineering</strong>, <strong>SaaS</strong>, and <strong>machine learning</strong>, with a growing interest in <strong>AI</strong>.
+              </p>
+              <br />
+              <p>
+                I’m constantly exploring new technologies and frameworks to sharpen my skills and expand my perspective.
+                Whether it's optimizing a system, contributing to an open-source project, or collaborating on innovative solutions,
+                I’m always driven by curiosity and a desire to make a real-world impact. When I’m not coding, you’ll usually find me
+                binge-watching mystery thrillers, experimenting with new recipes, or getting overly competitive in board games.
+              </p>
             </div>
           </div>
-          <div class="text-container">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-              reprehenderit et laborum, rem, dolore eum quod voluptate
-              exercitationem nobis, nihil esse debitis maxime facere minus sint
-              delectus velit in eos quo officiis explicabo deleniti dignissimos.
-              Eligendi illum libero dolorum cum laboriosam corrupti quidem,
-              reiciendis ea magnam? Nulla, impedit fuga!
-            </p>
-          </div>
-        </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#experience'"
-      />
     </section>
-    <section id="experience">
-      <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Experience</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container">
-            <h2 class="experience-sub-title">Frontend Development</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>HTML</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>CSS</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>SASS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>JavaScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>TypeScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Material UI</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
+
+    <section id="specializations" class="section">
+        <h2 class="section-title">Areas of Specialization</h2>
+          <div class="specialization-grid">
+            <div class="specialization-card"> 
+              <div class="icon-circle">💻</div>
+              <h3>Full Stack Development</h3>
+              <p>
+                Built intuitive, user-focused web platforms with features like personalized recommendations, admin dashboards, and real-time search — enhancing engagement and streamlining content management at scale.
+              </p>
+            </div>
+        
+            <div class="specialization-card">             
+              <div class="icon-circle"> 🧠</div>
+              <h3>Machine Learning & AI</h3>
+              <p>
+                Designed intelligent systems to improve healthcare accuracy and digital accessibility — including real-time seizure detection in video and early diagnosis tools for critical medical conditions.
+              </p>
+            </div>
+        
+            <div class="specialization-card">            
+              <div class="icon-circle">📊 </div>
+            <h3>Data Analytics & BI</h3>
+              <p>
+                Transformed raw data into actionable insights, identifying inefficiencies and forecasting trends — driving smarter decisions and revealing strategic opportunities across markets.
+              </p>
+            </div>
+        
+            <div class="specialization-card" >          
+              <div class="icon-circle">☁️</div>
+              <h3>Cloud, IoT & DevOps</h3>
+              <p>
+                Automated deployment workflows and cloud infrastructure, reducing release time and improving reliability. Built IoT-powered solutions tackling real-world challenges like food spoilage prediction.
+              </p>
+            </div>
+        
+            <div class="specialization-card" >
+              <div class="icon-circle">🔌</div>
+              <h3>API & Backend Systems</h3>
+              <p>
+                Engineered robust APIs and modular microservices capable of handling high-volume transactions — increasing system resilience and enabling seamless product scalability.
+              </p>
             </div>
           </div>
-          <div class="details-container">
-            <h2 class="experience-sub-title">Frontend Development</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>PostgreSQL</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Node JS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Express JS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Git</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
+    </section>
+
+    <section id="workexperience" class="section">
+        <h2 class="section-title">Work Experience</h2>
+        <div class="workexperience-grid">
+          <!-- NupulseCV -->
+          <div class="workexperience-item ">
+            <div class="workexperience-logo">
+              <img src="./assets/nupulselogo.png" alt="NupulseCV" />
+            </div>
+            <div class="workexperience-content">
+              <h3>Software Development Engineer</h3>
+              <p class="company">NupulseCV | Jul 2024 – Dec 2024</p>
+              <ul>
+                <li><strong>Improved clinical data visibility</strong> by building scalable ETL pipelines using Python and PostgreSQL to process 10K+ medical logs daily.</li>
+                <li><strong>Boosted monitoring speed by 45%</strong> through dashboards built with Svelte, Django, and Plotly for real-time telemetry.</li>
+                <li><strong>Reduced data ingestion lag by 60%</strong> by automating AWS S3 pipelines for faster analytics integration.</li>
+              </ul>
+            </div>
+          </div>
+        
+          <!-- LTIMindtree -->
+          <div class="workexperience-item">
+            <div class="workexperience-logo">
+              <img src="./assets/lti-mindtree.png" alt="LTIMindtree" />
+            </div>
+            <div class="workexperience-content">
+              <h3>Software Engineer</h3>
+              <p class="company">LTIMindtree | Jun 2021 – Jul 2023</p>
+              <ul>
+                <li><strong>Managed 1M+ transactions/month</strong> by developing scalable Java Spring Boot microservices for a BFSI suite.</li>
+                <li><strong>Cut release time by 30%</strong> through Jenkins + SonarQube CI/CD pipelines and JUnit automation.</li>
+                <li><strong>Provisioned secure cloud infra</strong> using Terraform & OpenShift, reducing deployment errors significantly.</li>
+              </ul>
+            </div>
+          </div>
+        
+          <!-- ExpertsHub -->
+          <div class="workexperience-item">
+            <div class="workexperience-logo">
+              <img src="./assets/expertshub.png" alt="ExpertsHub" />
+            </div>
+            <div class="workexperience-content">
+              <h3>ML/AI Intern</h3>
+              <p class="company">ExpertsHub | Jun 2020 – Jul 2020</p>
+              <ul>
+                <li><strong>Achieved 86% diagnostic accuracy</strong> with medical image models trained using TensorFlow & Keras.</li>
+                <li><strong>Scaled model APIs 2x faster</strong> by deploying FastAPI endpoints secured with JWT and Redis caching.</li>
+                <li><strong>Improved reliability</strong> through 5-fold cross-validation across real-world medical datasets.</li>
+              </ul>
             </div>
           </div>
         </div>
+        
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#projects'"
-      />
     </section>
-    <section id="projects">
+
+     <section id="skills" class="section">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-section">
+    
+        <div class="skill-category ">
+          <h3>Programming Languages</h3>
+          <div class="skills-list">
+            <span>Java</span>
+            <span>Python</span>
+            <span>C++</span>
+            <span>.NET</span>
+            <span>JavaScript</span>
+            <span>TypeScript</span>
+            <span>SQL</span>
+          </div>
+        </div>
+    
+        <div class="skill-category ">
+          <h3>Frontend & UI</h3>
+          <div class="skills-list">
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>React</span>
+            <span>Svelte</span>
+            <span>Angular</span>
+            <span>Tailwind</span>
+            <span>Bootstrap</span>
+          </div>
+        </div>
+    
+        <div class="skill-category ">
+          <h3>Backend & API</h3>
+          <div class="skills-list">
+            <span>Spring</span>
+            <span>Django REST</span>
+            <span>FastAPI</span>
+            <span>Node.js</span>
+            <span>Express.js</span>
+            <span>ASP</span>
+          </div>
+        </div>
+    
+        <div class="skill-category ">
+          <h3>Cloud & DevOps</h3>
+          <div class="skills-list">
+            <span>AWS</span>
+            <span>Azure</span>
+            <span>Firebase</span>
+            <span>Docker</span>
+            <span>Kubernetes</span>
+            <span>Jenkins</span>
+            <span>Terraform</span>
+            <span>OpenShift</span>
+          </div>
+        </div>
+    
+        <div class="skill-category ">
+          <h3>Databases</h3>
+          <div class="skills-list">
+            <span>PostgreSQL</span>
+            <span>MySQL</span>
+            <span>Oracle</span>
+            <span>MongoDB</span>
+            <span>Redis</span>
+          </div>
+        </div>
+    
+        <div class="skill-category ">
+          <h3>Machine Learning & Analytics</h3>
+          <div class="skills-list">
+            <span>TensorFlow</span>
+            <span>Keras</span>
+            <span>PyTorch</span>
+            <span>Scikit-learn</span>
+            <span>Pandas</span>
+            <span>Power BI</span>
+            <span>DAX</span>
+            <span>HuggingFace</span>
+            <span>LangChain</span>
+            <span>OpenCV</span>
+            <span>Apache Airflow</span>
+            <span>Apache Kafka</span>
+           
+          </div>
+        </div>
+    
+      </div>
+    </section>
+
+    <section id="projects" class="section">
       <p class="section__text__p1">Browse My Recent</p>
-      <h1 class="title">Projects</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-1.png"
-                alt="Project 1"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Project One</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
+      <h1 class="section-title">Projects</h1>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-img-container">
+            <img src="./assets/stock.png" alt="Stock Predictor" class="project-img" />
+            <div class="project-overlay">
+              <h3 class="project-title">Real-Time AI-Powered Stock Market Predictor</h3>
+              <p class="project-desc">
+                A real-time AI-powered system that combines live market data and sentiment analysis from news and social media to forecast trends.
+              </p>
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/krinashahhhh/AI-Investment-Advisor'">GitHub</button>
+                <p class="hashtags">
+                  <span class="tag1">#FastAPI</span>
+                  <span class="tag2">#Kafka</span>
+                  <span class="tag3">#Airflow</span>
+                  <span class="tag4">#DistilBert</span>
+              </p>
             </div>
           </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-2.png"
-                alt="Project 2"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Project Two</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
+        </div>
+        
+
+     <div class="project-card">
+      <div class="project-img-container">
+        <img src="./assets/wellness.jpeg" alt="Wellness Tracking " class="project-img" />
+        <div class="project-overlay">
+          <h3 class="project-title">Personal Wellness Tracking System</h3>
+              <p class="project-desc">
+                A responsive web platform that helps users monitor
+                wellness goals like hydration, sleep, and activity levels
+                 through interactive dashboards and reminders. 
+                 Designed with a simple, intuitive interface to encourage 
+                 healthy habits and personal accountability.              </p>
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/orgs/CSCIB565-SE-Project/repositories'">GitHub</button>
+              <p class="hashtags">
+                <span class="tag1">#React</span>
+                <span class="tag2">#Node.js</span>
+                <span class="tag3">#Spring</span>
+                <span class="tag4">#Docker</span>
+
+              </p>
             </div>
           </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-3.png"
-                alt="Project 3"
-                class="project-img"
-              />
+        </div>
+  
+        <div class="project-card">
+          <div class="project-img-container">   
+              <img src="./assets/seizure.png" alt="Seizure Detection" class="project-img" />
+            <div class="project-overlay">
+              <h3 class="project-title">Seizure Detection Risk Analyzer </h3>                      
+                <p class="project-desc">
+                A computer vision–based tool that flags seizure-inducing video segments by detecting high-contrast flashes and rapid visual patterns. Uses deep learning with OpenCV to enhance accessibility for photosensitive viewers.
+              </p>
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/krinashahhhh/EpiSheild'">GitHub</button>
+              <p class="hashtags">
+                <span class="tag1">#OpenCV</span>
+                <span class="tag2">#TensorFlow</span>
+                <span class="tag3">#Flask</span>
+              </p>
             </div>
-            <h2 class="experience-sub-title project-title">Project Three</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img-container">   
+              <img src="./assets/powerbi.png" alt="Power BI Dashboard" class="project-img" />       
+              <div class="project-overlay">
+                <h3 class="project-title"> Power BI Sales & Shipping Analytics Dashboard </h3 >                     
+              <p class="project-desc">
+                Interactive Power BI dashboard analyzing 20K+ sales records to reveal trends, optimize shipping, and drive smarter decisions with advanced DAX, geospatial insights, and Copilot summaries.              </p>
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/krinashahhhh/powerbi-sales-dashboard'">GitHub</button>
+              <p class="hashtags">
+                    <span class="tag1">#PowerBI</span>
+                    <span class="tag2">#DAX</span>
+                    <span class="tag3">#DataViz</span>
+                  </p>
+                  
+        
             </div>
+          </div>
+        </div>
+    
+      <div class="project-card">
+        <div class="project-img-container">   
+              <img src="./assets/movie.png" alt="MovieMatch App" class="project-img" />
+            <div class="project-overlay">
+              <h3 class="project-title">MovieMatch Recommender App</h3>
+                <p class="project-desc">
+                A full-stack movie recommendation system that curates suggestions based on user preferences and behavior. Features Google OAuth, advanced search, and a dynamic admin dashboard to streamline discovery and content management.
+              </p>
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/krinashahhhh/moviematch'">GitHub</button>
+       
+              <p class="hashtags">
+                <span class="tag1">#ReactJS</span>
+                <span class="tag2">#Firebase</span>
+                <span class="tag3">#SQL</span>
+              </p>
+              
+            </div>
+          </div>
+        </div>
+  
+    
+          <div class="project-card">
+            <div class="project-img-container">   
+              <img src="./assets/iot.png" alt="Expiry Prediction" class="project-img" />
+            <div class="project-overlay">
+              <h3 class="project-title">IoT-Based Expiry Prediction</h3>
+              <p class="project-desc">
+                A smart expiry monitoring system that integrates IoT sensors with machine learning to detect spoilage in perishable goods. It forecasts shelf life based on gas emissions and environmental readings, aiding food waste reduction.
+              </p>
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/krinashahhhh/expiry-predictor'">GitHub</button>
+              <p class="hashtags">
+                <span class="tag1">#Python</span>
+                <span class="tag2">#IOT</span>
+                <span class="tag3">#Arduino</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+    
+          <div class="project-card">
+            <div class="project-img-container">   
+              <img src="./assets/ml.png" alt="Breast Cancer Detection" class="project-img" />
+              <div class="project-overlay">
+                <h3 class="project-title">ML-Enhanced Breast Cancer Screening Assistant</h3>
+              <p class="project-desc">
+                A machine learning-powered tool for early detection of breast cancer. Analyzes patient diagnostic data with CNNs and ensemble models to accurately flag malignancies and accelerate clinical decision-making.
+              </p>
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/krinashahhhh/Breast-Cancer-Classification-using-MLs'">GitHub</button>
+              <p class="hashtags">
+                <span class="tag1">#ML</span>
+                <span class="tag2">#Redis</span>
+                <span class="tag3">#Flask</span>
+              </p>
+
           </div>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#contact'"
-      />
+      </div>
     </section>
-    <section id="contact">
-      <p class="section__text__p1">Get in Touch</p>
-      <h1 class="title">Contact Me</h1>
-      <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-          <img
-            src="./assets/email.png"
-            alt="Email icon"
-            class="icon contact-icon email-icon"
-          />
-          <p><a href="mailto:examplemail@gmail.com">Example@gmail.com</a></p>
+
+    <section id="contact" class="contact-section">
+      <h2 class="section-title">Let's get in touch</h2>
+      <div class="contact-wrapper">
+        <div class="contact-left">
+          <img src="./assets/globe.png" alt="Globe Illustration" class="contact-img" />
+          <div class="contact-info-container">
+            <i class="fas fa-envelope"></i>
+            <p><a href="mailto:krinashahh3010@gmail.com">krinashahh3010@gmail.com</a></p>
+          </div>
+          <div class="contact-info-container">
+            <i class="fab fa-linkedin"></i>
+            <p><a href="https://linkedin.com/in/krinashah30" target="_blank">linkedin.com/in/krinashah30</a></p>
+          </div>
         </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="LinkedIn icon"
-            class="icon contact-icon"
-          />
-          <p><a href="https://www.linkedin.com">LinkedIn</a></p>
+    
+        <div class="contact-right">
+          <form id="contact-form">
+            <input type="text" name="from_name" placeholder="Your Name" required />
+            <input type="email" name="from_email" placeholder="Your Email" required />
+            <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn submit-btn">Send Message</button>
+          </form>
+          
         </div>
       </div>
     </section>
-    <footer>
-      <nav>
-        <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-      <p>Copyright &#169; 2023 John Doe. All Rights Reserved.</p>
+    
+    <footer>   
+      <p>Copyright &#169; 2025 Krina Shah. All Rights Reserved.</p>
     </footer>
-    <script src="script.js"></script>
+
+
+
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+  <script>
+  (function () {
+    emailjs.init("krinashahh3010@gmail.com");
+  })();
+
+  document.getElementById("contact-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    emailjs.sendForm("service_mu1ujpg", "template_q62xbut", this)
+      .then(() => {
+        alert("Message sent successfully ✅");
+        this.reset();
+      })
+      .catch((err) => {
+        console.error("Failed to send message 😢", err);
+        alert("Oops! Something went wrong.");
+      });
+  });
+</script>
+
+    <div class="stars-overlay"></div>
+
+    <script src="./script.js"></script>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+<script>
+  ScrollReveal().reveal('.skill-category', {
+    origin: 'bottom',
+    distance: '40px',
+    duration: 1000,
+    interval: 200,
+    easing: 'ease-in-out',
+    reset: true
+  });
+
+  ScrollReveal().reveal('.workexperience-item', {
+    origin: 'bottom',
+    distance: '60px',
+    duration: 1000,
+    interval: 200,
+    easing: 'ease-in-out',
+    reset: true
+  });
+
+  ScrollReveal().reveal('.project-card', {
+    origin: 'bottom',
+    distance: '50px',
+    duration: 900,
+    interval: 150,
+    easing: 'ease-in-out',
+    reset: true
+  });
+
+  
+  ScrollReveal().reveal('.specialization-card', {
+    origin: 'bottom',
+    distance: '50px',
+    duration: 900,
+    interval: 150,
+    easing: 'ease-in-out',
+    reset: true
+  });
+</script>
+
+<script>
+      const elements = document.querySelectorAll('.animate-fade');
+    
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15
+      });
+    
+      elements.forEach(el => observer.observe(el));
+    </script>
+    
+<script>
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  
+  const particles = Array.from({ length: 80 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * 2 + 1,
+    dx: (Math.random() - 0.5) * 0.8,
+    dy: (Math.random() - 0.5) * 0.8
+  }));
+  
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.x += p.dx;
+      p.y += p.dy;
+  
+      if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = "#b2d8ff";
+      ctx.fill();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+</script>
+
+<script>
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    document.getElementById("progress-bar").style.width = scrollPercent + "%";
+  });
+</script>
+
+<script>
+  const scrollBtn = document.querySelector(".scroll-down");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) {
+      scrollBtn.style.display = "none";
+    } else {
+      scrollBtn.style.display = "block";
+    }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script>
+  particlesJS("particles-js", {
+    particles: {
+      number: { value: 80 },
+      color: { value: "#00bcd4" },
+      shape: { type: "circle" },
+      opacity: { value: 0.3 },
+      size: { value: 3 },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#00bcd4",
+        opacity: 0.2
+      },
+      move: {
+        enable: true,
+        speed: 1,
+        direction: "none",
+        straight: false
+      }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: { enable: true, mode: "grab" },
+        onclick: { enable: true, mode: "push" }
+      },
+      modes: {
+        grab: { distance: 140, line_linked: { opacity: 0.5 } },
+        push: { particles_nb: 4 }
+      }
+    },
+    retina_detect: true
+  });
+  </script>
+<script>
+const roles = ['Software Developer', 'Full Stack Engineer', 'ML Engineer'];
+let roleIndex = 0;
+let charIndex = 0;
+let typing = true;
+
+function typeRole() {
+  const role = roles[roleIndex];
+  const typewriter = document.getElementById('typewriter-text');
+
+  if (typing) {
+    if (charIndex < role.length) {
+      typewriter.textContent += role.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeRole, 100);
+    } else {
+      typing = false;
+      setTimeout(typeRole, 1500);
+    }
+  } else {
+    if (charIndex > 0) {
+      typewriter.textContent = role.substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(typeRole, 40);
+    } else {
+      typing = true;
+      roleIndex = (roleIndex + 1) % roles.length;
+      setTimeout(typeRole, 300);
+    }
+  }
+}
+
+window.addEventListener('DOMContentLoaded', typeRole);
+</script>
+
   </body>
 </html>
